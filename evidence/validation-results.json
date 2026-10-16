@@ -1,0 +1,12 @@
+{
+  "gold_counts": {
+    "Patient": 726,
+    "Encounter": 3761,
+    "Observation": 1726,
+    "Condition": 1853
+  },
+  "invalid_scd2_resources": 0,
+  "verified_utc_date": "2026-10-16",
+  "pipeline_run_id": "eaccad98-f94c-4264-960f-adc05ffd2c4e",
+  "pipeline_status": "Succeeded"
+}
