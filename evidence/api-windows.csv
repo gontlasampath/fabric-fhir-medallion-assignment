@@ -1,0 +1,13 @@
+resource_type,load_day,successful_pages,returned_resources
+Condition,2026-10-13,1,62
+Condition,2026-10-14,1,111
+Condition,2026-10-15,9,1680
+Encounter,2026-10-13,1,27
+Encounter,2026-10-14,1,152
+Encounter,2026-10-15,18,3582
+Observation,2026-10-13,1,64
+Observation,2026-10-14,3,418
+Observation,2026-10-15,7,1244
+Patient,2026-10-13,1,160
+Patient,2026-10-14,2,360
+Patient,2026-10-15,2,206
