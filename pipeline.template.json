@@ -1,0 +1,212 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Ingest_Patient",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "<NOTEBOOK_ID>",
+          "workspaceId": "<WORKSPACE_ID>",
+          "parameters": {
+            "resource_type": {
+              "value": "Patient",
+              "type": "string"
+            },
+            "start_date": {
+              "value": {
+                "value": "@pipeline().parameters.start_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "end_date": {
+              "value": {
+                "value": "@pipeline().parameters.end_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Ingest_Encounter",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Ingest_Patient",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "<NOTEBOOK_ID>",
+          "workspaceId": "<WORKSPACE_ID>",
+          "parameters": {
+            "resource_type": {
+              "value": "Encounter",
+              "type": "string"
+            },
+            "start_date": {
+              "value": {
+                "value": "@pipeline().parameters.start_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "end_date": {
+              "value": {
+                "value": "@pipeline().parameters.end_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Ingest_Observation",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Ingest_Encounter",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "<NOTEBOOK_ID>",
+          "workspaceId": "<WORKSPACE_ID>",
+          "parameters": {
+            "resource_type": {
+              "value": "Observation",
+              "type": "string"
+            },
+            "start_date": {
+              "value": {
+                "value": "@pipeline().parameters.start_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "end_date": {
+              "value": {
+                "value": "@pipeline().parameters.end_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Ingest_Condition",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Ingest_Observation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "<NOTEBOOK_ID>",
+          "workspaceId": "<WORKSPACE_ID>",
+          "parameters": {
+            "resource_type": {
+              "value": "Condition",
+              "type": "string"
+            },
+            "start_date": {
+              "value": {
+                "value": "@pipeline().parameters.start_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "end_date": {
+              "value": {
+                "value": "@pipeline().parameters.end_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Transform",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Ingest_Condition",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "<NOTEBOOK_ID>",
+          "workspaceId": "<WORKSPACE_ID>",
+          "parameters": {
+            "resource_type": {
+              "value": "TRANSFORM",
+              "type": "string"
+            },
+            "start_date": {
+              "value": {
+                "value": "@pipeline().parameters.start_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "end_date": {
+              "value": {
+                "value": "@pipeline().parameters.end_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "start_date": {
+        "type": "string"
+      },
+      "end_date": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "workspace_name": "FHIR_Assignment_Pragati_Jha",
+  "workspace_id": "9a1e4d7e-ae06-4011-b648-ccb54d690d3a",
+  "lakehouse_name": "FHIR_Lakehouse",
+  "lakehouse_id": "0ef7224f-6568-46af-9f22-446d01bbf493",
+  "sql_endpoint_id": "9ec94d44-c595-4b3a-b300-f29549188beb",
+  "notebook_name": "FHIR_Medallion",
+  "notebook_id": "f71a8777-6450-4aac-8427-035564de43f8",
+  "pipeline_name": "FHIR_Incremental_Pipeline",
+  "pipeline_id": "b8b5ea0c-318e-4a99-8a10-79585379cbfc",
+  "pipeline_validation": "No errors were found",
+  "backfill": {
+    "start_inclusive_utc": "2026-10-13",
+    "end_exclusive_utc": "2026-10-16",
+    "status": "Succeeded",
+    "evidence": "FHIR_WORKFLOW_SUCCEEDED 2026-10-13 2026-10-16 ALL"
+  },
+  "sql_views": "Created successfully after SQL metadata synchronization",
+  "pipeline_replay_run_id": "eaccad98-f94c-4264-960f-adc05ffd2c4e",
+  "pipeline_replay_status": "Succeeded",
+  "semantic_model": {
+    "name": "FHIR_Analytics_Model",
+    "id": "031f70f4-1879-4287-b5f7-6e7f23398a8a"
+  },
+  "report": {
+    "name": "FHIR_Clinical_Overview",
+    "id": "098b4b1e-73f7-4919-8094-8ba0d527aa21"
+  },
+  "dashboard": {
+    "name": "FHIR_Clinical_Dashboard",
+    "id": "ceb9f909-3e7e-4a3d-9057-a8cb7254da48"
+  },
+  "gold_counts": {
+    "Patient": 726,
+    "Encounter": 3761,
+    "Observation": 1726,
+    "Condition": 1853
+  },
+  "invalid_scd2_resources": 0
+}

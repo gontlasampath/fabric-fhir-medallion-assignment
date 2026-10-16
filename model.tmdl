@@ -1,0 +1,29 @@
+createOrReplace
+
+	ref table gold_patient
+		measure Patients = COUNTROWS(gold_patient)
+			formatString: #,##0
+		measure Encounters = COUNTROWS(gold_encounter)
+			formatString: #,##0
+		measure Observations = COUNTROWS(gold_observation)
+			formatString: #,##0
+		measure Conditions = COUNTROWS(gold_condition)
+			formatString: #,##0
+		measure 'Encounters per Patient' = DIVIDE([Encounters], [Patients])
+			formatString: 0.00
+
+	relationship FHIR_Patient_Encounter
+		fromColumn: gold_encounter.patient_id
+		toColumn: gold_patient.resource_id
+
+	relationship FHIR_Patient_Observation
+		fromColumn: gold_observation.patient_id
+		toColumn: gold_patient.resource_id
+
+	relationship FHIR_Patient_Condition
+		fromColumn: gold_condition.patient_id
+		toColumn: gold_patient.resource_id
+
+	relationship FHIR_Patient_Analytics
+		fromColumn: gold_encounter_analytics.patient_id
+		toColumn: gold_patient.resource_id
